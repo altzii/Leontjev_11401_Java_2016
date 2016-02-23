@@ -3,11 +3,27 @@
  */
 public class Forward implements Player, Attacking {
     int bestForwardWonCount;        //количество побед в номинации лучший форвард
+    int yellowCardCount;        //количество желтых карточек в матче
+    Player favouriteTeammate;       //лучший друг  в команде
 
+    public Forward(int bestForwardWonCount, int yellowCardCount, Player favouriteTeammate) {
+        this.bestForwardWonCount = bestForwardWonCount;
+        this.yellowCardCount = yellowCardCount;
+        this.favouriteTeammate = favouriteTeammate;
+    }
+
+    public Forward() {
+    }
 
     @Override
     public void performATrick(Ball ball, Player player) {
+        System.out.println("сделал финт в атаке, выполняя обводку игрока");
+        ball.trick();
+    }
 
+    @Override
+    public void performATrick(Ball ball) {
+        ball.trick();
     }
 
     @Override
@@ -17,15 +33,29 @@ public class Forward implements Player, Attacking {
 
     @Override
     public void say(Player player, String string) {
+        System.out.println("эй, + " + player + ", " + string);
 
     }
 
     @Override
-    public void simulate() {
+    public void passTheBall(Player player, int speed, Ball ball) {
+        player.takePass(ball, player);
+        System.out.println("я отдал передачу " + player);
+
     }
 
     @Override
-    public void passTheBall(Player player, int speed) {
+    public void takePass(Ball ball, Player fromPlayer) {
+        System.out.println("я принял мяч от " + fromPlayer);
+    }
 
+    @Override
+    public int getYellowCardsCount() {
+        return yellowCardCount;
+    }
+
+    @Override
+    public void getYellowCard() {
+        yellowCardCount++;
     }
 }

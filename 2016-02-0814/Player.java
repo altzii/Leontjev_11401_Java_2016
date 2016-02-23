@@ -3,10 +3,9 @@
  */
 public interface Player {
     void kick(Ball ball);                //ударить по мячу
-
     void say(Player player, String string);      //подсказат что-то другому игроку
-
-    void simulate();                        //симулировать
-
-    void passTheBall(Player player, int speed);   //отдать пас другому игроку с определенной скоростью
+    void passTheBall(Player player, int speed, Ball ball);   //отдать пас другому игроку с определенной скоростью
+    void takePass(Ball ball, Player fromPlayer);   //принять пас
+    int getYellowCardsCount();
+    void getYellowCard();
 }
