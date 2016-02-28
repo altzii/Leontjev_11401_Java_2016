@@ -8,6 +8,14 @@ public class Forward implements Player, Attacking {
     int yellowCardCount;        //количество желтых карточек в матче
     Player favouriteTeammate;       //лучший друг  в команде
 
+    public int getBestForwardWonCount() {
+        return bestForwardWonCount;
+    }
+
+    public Player getFavouriteTeammate() {
+        return favouriteTeammate;
+    }
+
     public Forward(int bestForwardWonCount, int yellowCardCount, Player favouriteTeammate) {
         this.bestForwardWonCount = bestForwardWonCount;
         this.yellowCardCount = yellowCardCount;
@@ -35,7 +43,7 @@ public class Forward implements Player, Attacking {
 
     @Override
     public void say(Player player, String string) {
-        System.out.println("эй, + " + player + ", " + string);
+        System.out.println("эй, " + player + ", " + string);
 
     }
 
@@ -43,7 +51,6 @@ public class Forward implements Player, Attacking {
     public void passTheBall(Player player, int speed, Ball ball) {
         player.takePass(ball, player);
         System.out.println("я отдал передачу " + player);
-
     }
 
     @Override
@@ -54,6 +61,11 @@ public class Forward implements Player, Attacking {
     @Override
     public int getYellowCardsCount() {
         return yellowCardCount;
+    }
+
+    @Override
+    public String toString() {
+        return "нападающий";
     }
 
     @Override

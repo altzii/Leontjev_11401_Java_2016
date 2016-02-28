@@ -24,7 +24,7 @@ public class Midfielder implements Player, Defending, Attacking {
 
     @Override
     public void performATrick(Ball ball, Player player) {
-        System.out.println("сделал финт, выполняю обводку игрока");
+        System.out.println("сделал финт, выполняя обводку игрока");
         ball.trick();
         player.say(this, "ты такой финт красивый сделал!1");
     }
@@ -56,7 +56,7 @@ public class Midfielder implements Player, Defending, Attacking {
 
     @Override
     public void say(Player player, String string) {
-        System.out.println("эй, + " + player + ", " + string);
+        System.out.println("эй, " + player + ", " + string);
 
     }
 
@@ -81,5 +81,26 @@ public class Midfielder implements Player, Defending, Attacking {
     @Override
     public void getYellowCard() {
         yellowCardCount++;
+    }
+
+    @Override
+    public String toString() {
+        return "полузащитник";
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public int getPassesCount() {
+        return passesCount;
+    }
+
+    public int getBestMidfielderdWonCount() {
+        return bestMidfielderdWonCount;
+    }
+
+    public Player getFavouriteTeammate() {
+        return favouriteTeammate;
     }
 }

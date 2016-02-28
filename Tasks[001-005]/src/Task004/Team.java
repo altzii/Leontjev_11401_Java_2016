@@ -18,10 +18,8 @@ public class Team implements Command {
         this.players = players;
     }
 
-    public Team() {
-    }
-
     public Team(ArrayList<Player> players) {
+        this.players = players;
     }
 
     @Override
@@ -42,5 +40,21 @@ public class Team implements Command {
                 player.kick(ball);
             }
         }
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getName() {
+        return name;
     }
 }

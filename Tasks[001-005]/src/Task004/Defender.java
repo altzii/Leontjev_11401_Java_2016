@@ -17,9 +17,26 @@ public class Defender implements Player, Defending {
     public Defender() {
     }
 
+    public int getWonCombatsCount() {
+        return wonCombatsCount;
+    }
+
+    public Ball getFavouriteBall() {
+        return favouriteBall;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    @Override
+    public String toString() {
+        return "защитник";
+    }
+
     @Override
     public void defend(Player player) {
-        System.out.println("Отобрал мяч как истиный защитник");
+        System.out.println("Отобрал мяч как истинный защитник");
         wonCombatsCount++;
     }
 
@@ -30,7 +47,6 @@ public class Defender implements Player, Defending {
 
     @Override
     public void sendTheBallToGoalkeeper(Ball ball) {
-
     }
 
     @Override
@@ -40,15 +56,13 @@ public class Defender implements Player, Defending {
 
     @Override
     public void say(Player player, String string) {
-        System.out.println("эй, + " + player + ", " + string);
-
+        System.out.println("эй, " + player + ", " + string);
     }
 
     @Override
     public void passTheBall(Player player, int speed, Ball ball) {
         player.takePass(ball, player);
         System.out.println("я отдал передачу " + player);
-
     }
 
     @Override
