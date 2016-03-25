@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="forward" class="Task006.Forward">
+    </bean>
+    <bean id="defender" class="Task006.Defender">
+    </bean>
+    <bean id="midfielder" class="Task006.Midfielder">
+    </bean>
+    <bean id="ball" class="Task006.Ball">
+        <constructor-arg value="5"/>
+        <constructor-arg value="Nike"/>
+        <constructor-arg value="23.3"/>
+        <constructor-arg ref="defender"/>
+    </bean>
+    <bean id="card" class="Task006.Card">
+        <constructor-arg>
+            <value type="Task006.Color">RED</value>
+        </constructor-arg>
+        <constructor-arg ref="midfielder"/>
+        <constructor-arg value="23"/>
+    </bean>
+    <bean id="referee" class="Task006.Referee"/>
+    <bean id="anotherReferee" class="Task006.Referee"/>
+
+    <util:list id="players" value-type="Task006.Player">
+        <ref bean="defender"/>
+        <ref bean="midfielder"/>
+        <ref bean="forward"/>
+    </util:list>
+
+    <bean id="team" class="Task006.Team">
+        <constructor-arg ref="players"/>
+    </bean>
+</beans>

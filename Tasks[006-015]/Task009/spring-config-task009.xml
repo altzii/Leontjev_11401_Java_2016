@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="complexNumber" class="Task009.ComplexNumber">
+        <constructor-arg value="1.0"/>
+        <constructor-arg value="2.0"/>
+    </bean>
+
+    <bean id="complexNumber1" class="Task009.ComplexNumber">
+        <constructor-arg value="2.0"/>
+        <constructor-arg value="5.0"/>
+    </bean>
+    <bean id="complexNumber2" class="Task009.ComplexNumber">
+        <constructor-arg value="3.0"/>
+        <constructor-arg value="6.0"/>
+    </bean>
+    <bean id="complexNumber3" class="Task009.ComplexNumber">
+        <constructor-arg value="7.0"/>
+        <constructor-arg value="8.0"/>
+    </bean>
+    <bean id="complexNumber4" class="Task009.ComplexNumber">
+        <constructor-arg value="1.0"/>
+        <constructor-arg value="2.0"/>
+    </bean>
+    <bean id="zeroComplexNumber" class="Task009.ComplexNumber">
+    </bean>
+    <bean id="resComplexNumber1" class="Task009.ComplexNumber">
+        <constructor-arg value="4.0"/>
+        <constructor-arg value="10.0"/>
+    </bean>
+    <bean id="resComplexNumber2" class="Task009.ComplexNumber">
+        <constructor-arg value="6.0"/>
+        <constructor-arg value="12.0"/>
+    </bean>
+    <bean id="resComplexNumber3" class="Task009.ComplexNumber">
+        <constructor-arg value="14.0"/>
+        <constructor-arg value="16.0"/>
+    </bean>
+    <bean id="resComplexNumber4" class="Task009.ComplexNumber">
+        <constructor-arg value="2.0"/>
+        <constructor-arg value="4.0"/>
+    </bean>
+    <bean id="complexVector2D" class="Task009.ComplexVector2D">
+        <constructor-arg ref="complexNumber"/>
+        <constructor-arg ref="complexNumber"/>
+    </bean>
+    <bean id="complexMatrix2x2" class="Task009.ComplexMatrix2x2">
+        <constructor-arg ref="complexNumber"/>
+    </bean>
+
+    <bean id="complexNumberForResVector" class="Task009.ComplexNumber">
+        <constructor-arg value="-6.0"/>
+        <constructor-arg value="8.0"/>
+    </bean>
+
+    <bean id="resultComplexVector" class="Task009.ComplexVector2D">
+        <constructor-arg ref="complexNumberForResVector"/>
+        <constructor-arg ref="complexNumberForResVector"/>
+    </bean>
+
+
+</beans>

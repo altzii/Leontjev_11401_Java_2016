@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <bean id="emptyBall" class="Task010.Ball"/>
+    <bean id="playerDefender" class="Task010.Defender"/>
+    <bean id="ball" class="Task010.Ball">
+        <constructor-arg index="1" value="Nike"/>
+        <constructor-arg index="0" value="8"/>
+        <constructor-arg value="23.4"/>
+        <constructor-arg index="2" ref="playerDefender"/>
+    </bean>
+
+    <bean id="emptyCard" class="Task010.Card"/>
+    <bean id="card" class="Task010.Card">
+        <constructor-arg>
+            <value type="Task010.Color">YELLOW</value>
+        </constructor-arg>
+        <constructor-arg ref="playerDefender"/>
+        <constructor-arg value="4.2"/>
+    </bean>
+
+    <bean id="redCard" class="Task010.Card">
+        <constructor-arg>
+            <value type="Task010.Color">RED</value>
+        </constructor-arg>
+        <constructor-arg ref="playerDefender"/>
+        <constructor-arg value="4.2"/>
+    </bean>
+
+    <bean id="leftDefender" class="Task010.Defender">
+        <constructor-arg ref="ball"/>
+        <constructor-arg value="left"/>
+    </bean>
+
+    <bean id="forward" class="Task010.Forward">
+        <constructor-arg value="23"/>
+        <constructor-arg value="0"/>
+        <constructor-arg ref="playerDefender"/>
+    </bean>
+
+    <bean id="emptyForward" class="Task010.Forward"/>
+
+    <bean id="emptyFootballGoal" class="Task010.FootballGoal"/>
+    <bean id="emptyNetOnGoal" class="Task010.NetOnGoal"/>
+    <bean id="footballGoal" class="Task010.FootballGoal">
+        <constructor-arg value="3"/>
+        <constructor-arg value="34.4"/>
+        <constructor-arg ref="emptyNetOnGoal"/>
+    </bean>
+    <bean id="netOnGoal" class="Task010.NetOnGoal">
+        <constructor-arg ref="footballGoal"/>
+        <constructor-arg value="23.2"/>
+        <constructor-arg value="Orange"/>
+    </bean>
+
+
+    <bean id="emptyReferee" class="Task010.Referee" scope="prototype"/>
+    <bean id="referee" class="Task010.Referee">
+        <constructor-arg ref="playerDefender"/>
+        <constructor-arg value="24"/>
+        <constructor-arg value="57"/>
+    </bean>
+
+
+    <util:list id="players" value-type="Task010.Player">
+        <ref bean="forward"/>
+        <ref bean="playerDefender"/>
+    </util:list>
+
+    <bean id="team" class="Task010.Team">
+        <constructor-arg value="FC Shumerlya"/>
+        <constructor-arg value="Shumerlya"/>
+        <constructor-arg value="50"/>
+        <constructor-arg ref="players"/>
+    </bean>
+
+    <bean id="emptyMidfielder" class="Task010.Midfielder"/>
+
+    <bean id="midfielder" class="Task010.Midfielder">
+        <constructor-arg value="left"/>
+        <constructor-arg value="23"/>
+        <constructor-arg value="0"/>
+        <constructor-arg value="2"/>
+        <constructor-arg ref="playerDefender"/>
+
+    </bean>
+
+
+</beans>
