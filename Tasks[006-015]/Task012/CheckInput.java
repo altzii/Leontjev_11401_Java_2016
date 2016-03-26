@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 public class CheckInput {
     @Around("execution(* *..Test.execute(String))")
     public Object checkEmail(ProceedingJoinPoint jp) throws Throwable {
-        String input = (String) jp.getArgs()[0];
+        String input = ((String) jp.getArgs()[0]).toLowerCase();
         Pattern pattern = Pattern.compile("(.*)(select|update|create|delete|alter|drop|commit|rollback|insert|grant|revoke|savepoint|deny)(.*);");
         Matcher matcher = pattern.matcher(input);
 
@@ -25,3 +25,4 @@ public class CheckInput {
         return null;
     }
 }
+
