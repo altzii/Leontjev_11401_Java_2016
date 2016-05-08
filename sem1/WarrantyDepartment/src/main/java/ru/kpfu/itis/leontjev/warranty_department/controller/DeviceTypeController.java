@@ -38,14 +38,14 @@ public class DeviceTypeController {
 
     @RequestMapping(value = "/operator/device_types/add", method = RequestMethod.GET)
     public String addStatusPage(Model model) {
-        model.addAttribute("status_form", new AddDeviceTypeForm());
+        model.addAttribute("device_type_form", new AddDeviceTypeForm());
         return "/add_device_type";
     }
 
     @RequestMapping(value = "operator/device_types/add", method = RequestMethod.POST)
     public String addStatus(@ModelAttribute("device_type_form") @Valid AddDeviceTypeForm form, BindingResult result) {
         if (result.hasErrors()) {
-            return "redirect:/operator/device_types/add";
+            return "/add_device_type";
         }
 
         String name = form.getName();

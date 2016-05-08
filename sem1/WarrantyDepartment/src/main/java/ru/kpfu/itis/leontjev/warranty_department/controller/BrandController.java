@@ -44,7 +44,7 @@ public class BrandController {
     @RequestMapping(value = "operator/brands/add", method = RequestMethod.POST)
     public String addBrand(@ModelAttribute("brand_form") @Valid AddBrandForm form, BindingResult result) {
         if (result.hasErrors()) {
-            return "redirect:/operator/brands/add";
+            return "/add_brand";
         }
 
         String name = form.getName();

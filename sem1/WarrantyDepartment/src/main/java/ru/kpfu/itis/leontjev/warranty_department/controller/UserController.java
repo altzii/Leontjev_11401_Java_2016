@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.leontjev.warranty_department.entity.Client;
 import ru.kpfu.itis.leontjev.warranty_department.entity.User;
 import ru.kpfu.itis.leontjev.warranty_department.form.AddUserForm;
-import ru.kpfu.itis.leontjev.warranty_department.form.ChangeProfileForm;
+import ru.kpfu.itis.leontjev.warranty_department.form.EditProfileForm;
 import ru.kpfu.itis.leontjev.warranty_department.service.ClientService;
 import ru.kpfu.itis.leontjev.warranty_department.service.UserService;
 
@@ -38,13 +38,13 @@ public class UserController {
         String login = authentication.getName();
         User user = userService.findByLogin(login);
         model.put("user", user);
-        model.addAttribute("profile_form", new ChangeProfileForm());
+        model.addAttribute("profile_form", new EditProfileForm());
 
         return "/profile";
     }
 
     @RequestMapping(value = "/profile/update", method = RequestMethod.POST)
-    public String updateProfile(HttpServletRequest httpServletRequest, ModelMap model, @ModelAttribute("profile_form") @Valid ChangeProfileForm form, BindingResult result) {
+    public String updateProfile(HttpServletRequest httpServletRequest, ModelMap model, @ModelAttribute("profile_form") @Valid EditProfileForm form, BindingResult result) {
         User user = userService.findByLogin(httpServletRequest.getUserPrincipal().getName());
         if (result.hasErrors()) {
             model.put("user", user);
@@ -66,25 +66,25 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
-    public String serviceCenters(ModelMap model) {
+    public String users(ModelMap model) {
         model.put("users", userService.findAll());
         return "/users";
     }
 
     @RequestMapping(value = "/admin/delete/users/{id:\\d+}", method = RequestMethod.POST)
-    public String deleteServiceCenter(@PathVariable String id) {
+    public String deleteUser(@PathVariable String id) {
         userService.delete(Integer.parseInt(id));
         return "redirect:/admin/users";
     }
 
     @RequestMapping(value = "/admin/users/add", method = RequestMethod.GET)
-    public String addServiceCenterPage(Model model) {
+    public String addUserPage(Model model) {
         model.addAttribute("user_form", new AddUserForm());
         return "/add_user";
     }
 
     @RequestMapping(value = "admin/users/add", method = RequestMethod.POST)
-    public String addStatus(@ModelAttribute("user_form") @Valid AddUserForm form, BindingResult result) {
+    public String addUser(@ModelAttribute("user_form") @Valid AddUserForm form, BindingResult result) {
         if (result.hasErrors()) {
             return "/add_user";
         }

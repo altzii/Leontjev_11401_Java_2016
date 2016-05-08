@@ -1,11 +1,21 @@
 package ru.kpfu.itis.leontjev.warranty_department.form;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Size;
+
 /**
  * Created by Alexander on 04/05/2016.
  */
 public class AddServiceCenterForm {
+    @NotEmpty(message = "Введите название сервисного центра")
+    @Size(max = 100)
     private String name;
+
+    @Size(max = 100)
     private String phone;
+
+    @Size(max = 100)
     private String address;
 
     public String getName() {

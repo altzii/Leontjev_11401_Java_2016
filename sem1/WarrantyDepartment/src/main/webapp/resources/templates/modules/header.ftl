@@ -26,7 +26,7 @@
                             <img src="/resources/dist/img/avatar5.png" class="img-circle" alt="User Image">
                             <p style="align-">
                                 ${username}
-                                <small>администратор</small>
+                                <small>На сайте</small>
                             </p>
                         </li>
                         <!-- Menu Body -->

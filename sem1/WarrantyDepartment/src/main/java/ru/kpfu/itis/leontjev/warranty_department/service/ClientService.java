@@ -13,4 +13,5 @@ public interface ClientService {
     List<Client> findAll();
     Client update(Client client);
     Client findById(long id);
+    List<Client> findAllByOrderByNameAsc();
 }

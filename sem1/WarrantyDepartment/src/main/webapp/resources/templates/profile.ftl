@@ -17,12 +17,12 @@
                 <@form.form commandName="profile_form" action="/profile/update" acceptCharset="UTF-8"  method="post">
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                            <b>Логин</b> <input type="text"  <#if user.client??>disabled</#if> name="login"
+                            <b>Логин</b> <input type="text" disabled name="login"
                                                 class="form-control"
                                                 placeholder="${user.login}"">
                         </li>
                         <li class="list-group-item">
-                            <b>email</b> <input type="email" <#if user.client??>disabled</#if> name="email"
+                            <b>email</b> <input type="email" disabled name="email"
                                                 class="form-control"
                                                 placeholder="${user.email}">
                         </li>
@@ -33,23 +33,20 @@
                                 <p align="center"><@form.errors path="name" cssStyle="color: #ab2020;" /></p>
                             </li>
 
-
                             <li class="list-group-item">
                                 <b>Номер
                                     телефона</b> <@form.input type="text" value="${user.client.phone}" name="phone"  path="phone" class="form-control"
-                            placeholder="${user.client.phone}"/>
+                            />
                                 <p align="center"><@form.errors path="phone" cssStyle="color: #ab2020;" /></p>
-
                             </li>
                             <li class="list-group-item">
                                 <b>Адрес</b> <@form.input type="text"  value="${user.client.address}" name="address" path="address" class="form-control"
                             placeholder="${user.client.address}"/>
                                 <p align="center"><@form.errors path="address" cssStyle="color: #ab2020;" /></p>
                             </li>
-
                         </#if>
                     </ul>
-                    <button type="submit" class="btn btn-primary btn-block">Обновить данные</button>
+                    <#if user.client??><button type="submit" class="btn btn-primary btn-block">Обновить данные</button></#if>
                 </@form.form>
             </div><!-- /.box-body -->
         </div><!-- /.box -->

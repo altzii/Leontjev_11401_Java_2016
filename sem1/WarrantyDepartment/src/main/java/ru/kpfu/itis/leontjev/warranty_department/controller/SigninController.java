@@ -13,17 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SigninController {
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
-    public String signin(@RequestParam(value = "from_signup", required = false) String status, ModelMap model) {
-        System.out.println(status);
-        if ( status != null && status.equals("1")) {
-            model.put("signup_msg", "signup_msg");
+    public String signin(@RequestParam(value = "from_signup", required = false) boolean status, @RequestParam(value = "error", required = false) boolean error, ModelMap model) {
+        if (status) {
+            model.put("from_signup", true);
+        }
+        if (error) {
+            model.addAttribute("error", true);
         }
         return "/signin";
-    }
-
-
-    @RequestMapping(value = "/signin-failure", method = RequestMethod.GET)
-    public String signinFailure() {
-        return "/signin_failure";
     }
 }

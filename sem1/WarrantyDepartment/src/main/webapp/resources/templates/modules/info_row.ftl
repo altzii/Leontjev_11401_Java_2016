@@ -4,52 +4,52 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>150</h3>
-                <p>на ремонте</p>
+                <h3>${new_orders_size}</h3>
+                <p>новые заявки</p>
             </div>
             <div class="icon">
                 <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/operator/orders" class="small-box-footer">Подробнее <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-                <p>закрыто</p>
+                <h3>${orders_size}</h3>
+                <p>число заявок</p>
             </div>
             <div class="icon">
                 <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/operator/orders" class="small-box-footer">Подробнее <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3>44</h3>
-                <p>клиента</p>
+                <h3>${clients_size}</h3>
+                <p>клиенты</p>
             </div>
             <div class="icon">
                 <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/operator/clients" class="small-box-footer">Подробнее <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-red">
             <div class="inner">
-                <h3>12</h3>
-                <p>операторов</p>
+                <h3>${operators_size}</h3>
+                <p>операторы</p>
             </div>
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/admin/users" class="small-box-footer">Подробнее <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div><!-- ./col -->
 </div><!-- /.row -->

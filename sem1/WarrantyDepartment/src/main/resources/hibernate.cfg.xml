@@ -13,6 +13,7 @@
         <mapping class="ru.kpfu.itis.leontjev.warranty_department.entity.DeviceType"/>
         <mapping class="ru.kpfu.itis.leontjev.warranty_department.entity.ServiceCenter"/>
         <mapping class="ru.kpfu.itis.leontjev.warranty_department.entity.Status"/>
+        <mapping class="ru.kpfu.itis.leontjev.warranty_department.entity.Order"/>
         <!-- DB schema will be updated if needed -->
     </session-factory>
 </hibernate-configuration>

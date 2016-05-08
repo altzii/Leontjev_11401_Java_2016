@@ -12,4 +12,5 @@ import java.util.List;
 @Repository
 public interface DeviceTypeRepository extends JpaRepository<DeviceType, Long> {
     List<DeviceType> findAll();
+    List<DeviceType> findAllByOrderByNameAsc();
 }

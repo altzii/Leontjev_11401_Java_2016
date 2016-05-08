@@ -49,4 +49,9 @@ public class StatusServiceImpl implements StatusService {
     public Status findById(long id) {
         return statusRepository.findOne(id);
     }
+
+    @Override
+    public Status findByName(String name) {
+        return statusRepository.findByName(name);
+    }
 }

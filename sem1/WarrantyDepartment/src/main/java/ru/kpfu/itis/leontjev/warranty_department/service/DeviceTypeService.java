@@ -13,4 +13,5 @@ public interface DeviceTypeService {
     List<DeviceType> findAll();
     DeviceType update(DeviceType deviceType);
     DeviceType findById(long id);
+    List<DeviceType> findAllByOrderByNameAsc();
 }

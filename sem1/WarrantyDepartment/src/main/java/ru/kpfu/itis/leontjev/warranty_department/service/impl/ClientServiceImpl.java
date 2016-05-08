@@ -48,4 +48,9 @@ public class ClientServiceImpl implements ClientService {
     public Client findById(long id) {
         return clientRepository.findOne(id);
     }
+
+    @Override
+    public List<Client> findAllByOrderByNameAsc() {
+        return clientRepository.findAllByOrderByNameAsc();
+    }
 }

@@ -16,8 +16,9 @@
         <intercept-url pattern="/operator/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')"/>
         <intercept-url pattern="/" access="hasAnyRole('ROLE_ADMIN','ROLE_USER','ROLE_OPERATOR')"/>
         <intercept-url pattern="/signin" access="hasRole('ROLE_ANONYMOUS')"/>
+        <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
         <form-login login-page="/signin"
-                    authentication-failure-url="/signin-failure" default-target-url="/"/>
+                    authentication-failure-url="/signin?error=true" default-target-url="/"/>
         <logout logout-success-url="/signin" delete-cookies="JSESSIONID"/>
         <logout logout-url="/logout" delete-cookies="JSESSIONID"/>
         <remember-me

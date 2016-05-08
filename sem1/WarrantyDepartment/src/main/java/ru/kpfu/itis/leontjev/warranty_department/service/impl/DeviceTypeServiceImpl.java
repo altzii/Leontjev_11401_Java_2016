@@ -48,4 +48,9 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     public DeviceType findById(long id) {
         return deviceTypeRepository.findOne(id);
     }
+
+    @Override
+    public List<DeviceType> findAllByOrderByNameAsc() {
+        return deviceTypeRepository.findAllByOrderByNameAsc();
+    }
 }

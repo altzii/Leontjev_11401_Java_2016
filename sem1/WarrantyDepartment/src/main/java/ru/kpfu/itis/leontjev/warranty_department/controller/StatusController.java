@@ -45,7 +45,7 @@ public class StatusController {
     @RequestMapping(value = "operator/statuses/add", method = RequestMethod.POST)
     public String addStatus(@ModelAttribute("status_form") @Valid AddStatusForm form, BindingResult result) {
         if (result.hasErrors()) {
-            return "redirect:/operator/statuses/add";
+            return "/add_status";
         }
 
         String name = form.getName();

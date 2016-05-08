@@ -13,4 +13,5 @@ public interface StatusService {
     List<Status> findAll();
     Status update(Status status);
     Status findById(long id);
+    Status findByName(String name);
 }

@@ -48,4 +48,9 @@ public class BrandServiceImpl implements BrandService {
     public Brand findById(long id) {
         return brandRepository.findOne(id);
     }
+
+    @Override
+    public List<Brand> findAllByOrderByNameAsc() {
+        return brandRepository.findAllByOrderByNameAsc();
+    }
 }

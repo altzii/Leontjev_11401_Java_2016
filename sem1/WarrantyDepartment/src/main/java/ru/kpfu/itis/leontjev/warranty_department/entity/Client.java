@@ -1,6 +1,7 @@
 package ru.kpfu.itis.leontjev.warranty_department.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Alexander on 22/04/2016.
@@ -13,6 +14,7 @@ public class Client {
     private String phone;
     private String address;
     private User user;
+    private List<Order> orders;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -90,5 +92,21 @@ public class Client {
     }
 
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name="client_id")
+    public List<Order> getOrders() {
+        return orders;
+    }
 
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

@@ -23,22 +23,27 @@
             <h3 class="box-title">Добавить производителя техники</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="/operator/brands/add" method="post">
+        <@form.form commandName="brand_form" action="/operator/brands/add" acceptCharset="UTF-8" method="post">
             <div class="box-body">
                 <div class="form-group">
                     <label for="name">Производитель техники</label>
-                    <input required="required" type="text" maxlength="100" class="form-control" id="name" name="name"
-                           placeholder="Введите название">
+                    <@form.input path="name" type="text" maxlength="100" class="form-control" id="name" name="name"
+                           placeholder="Введите название"/>
                 </div>
+                <p align="center"><@form.errors path="name" cssStyle="color: #ab2020;"/></p>
             </div><!-- /.box-body -->
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Добавить</button>
             </div>
-        </form>
+        </@form.form>
     </div>
 </div>
 </div>
 </#macro>
+
+<script>
+
+</script>
 
 <#macro box>
 <div class="box">

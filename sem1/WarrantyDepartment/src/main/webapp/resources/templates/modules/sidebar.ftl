@@ -20,7 +20,7 @@
 
                 <li class="header">МЕНЮ</li>
 
-            <@security.authorize access="hasRole('ROLE_ADMIN')">
+            <@security.authorize access="hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR')">
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-folder"></i> <span>Справочники</span>
@@ -34,25 +34,30 @@
                         <li><a href="/operator/brands"><i class="fa fa-gear"></i> Производители</a></li>
                         <li><a href="/operator/statuses"><i class="fa fa-check-square-o"></i> Статусы заказов</a>
                         </li>
+                <@security.authorize access="hasRole('ROLE_ADMIN')">
                         <li><a href="/admin/users"><i class="fa fa-circle-o"></i> Пользователи</a></li>
+                </@security.authorize>
                     </ul>
                 </li>
-
-
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-calendar"></i> <span>Заказы клиентов</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-table"></i> Все в работе</a></li>
-                        <li><a href="#"><i class="fa fa-cogs"></i> На ремоне в АСЦ</a></li>
-                        <li><a href="#"><i class="fa fa-check-square-o"></i> Закрытые</a>
-                        </li>
-
-                    </ul>
+                <!--  <li class="treeview">
+                   <a href="#">
+                       <i class="fa fa-calendar"></i> <span>Заявки клиентов</span>
+                       <i class="fa fa-angle-left pull-right"></i>
+                   </a>
+                  <ul class="treeview-menu">
+                       <li><a href="#"><i class="fa fa-file-o"></i> Новые</a></li>
+                       <li><a href="#"><i class="fa fa-table"></i> Все в работе</a></li>
+                       <li><a href="#"><i class="fa fa-cogs"></i> На ремоне в АСЦ</a></li>
+                       <li><a href="#"><i class="fa fa-check-square-o"></i> Закрытые</a>
+                       </li>
+                   </ul>
                 </li>
-                <li><a href="#"><i class="fa  fa-area-chart"></i> <span>Монитор заказов</span></a></li>
+                -->
+                <li><a href="/operator/orders"><i class="fa  fa-area-chart"></i> <span>Заявки клиентов</span></a></li>
+            </@security.authorize>
+            <@security.authorize access="hasRole('ROLE_USER')">
+                <li><a href="/user/orders"><i class="fa  fa-bar-chart-o"></i> <span>Мои заявки</span></a></li>
+                <li><a href="/user/orders/add"><i class="fa  fa-file-text-o"></i> <span>Оставить заявку</span></a></li>
             </@security.authorize>
             </ul>
         </section>

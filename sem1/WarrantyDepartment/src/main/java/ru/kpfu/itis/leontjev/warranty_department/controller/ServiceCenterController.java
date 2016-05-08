@@ -44,7 +44,7 @@ public class ServiceCenterController {
     @RequestMapping(value = "operator/service_centers/add", method = RequestMethod.POST)
     public String addServiceCenter(@ModelAttribute("service_center_form") @Valid AddServiceCenterForm form, BindingResult result) {
         if (result.hasErrors()) {
-            return "redirect:/operator/service_centers/add";
+            return "/add_service_center";
         }
 
         String name = form.getName();

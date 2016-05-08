@@ -4726,4 +4726,17 @@ table.text-center th {
   .table-responsive > .table tr td {
     white-space: normal!important;
   }
+
+  .signin_error {
+    display: block;
+    align-content: center;
+    margin-top: -5px;
+    color: #a71f1f;
+    padding: 0 20px;
+    font-size: 1.1rem;
+  }
+}
+
+span.required {
+  color: #ff0000;
 }

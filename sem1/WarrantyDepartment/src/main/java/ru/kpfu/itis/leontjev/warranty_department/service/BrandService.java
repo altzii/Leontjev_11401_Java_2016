@@ -14,4 +14,5 @@ public interface BrandService {
     List<Brand> findAll();
     Brand update(Brand brand);
     Brand findById(long id);
+    List<Brand> findAllByOrderByNameAsc();
 }

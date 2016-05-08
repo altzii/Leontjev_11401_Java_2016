@@ -5,14 +5,14 @@
 
 
 <#macro m_body_header>
-
-<a href="/operator/statuses">
-    <div class="box-header">
+<div class="box-header">
+    <a href="/operator/statuses">
         <button class="btn btn-default" style="padding: 4px 8px; margin: -2px; float: right;"><i
                 class="fa fa-back"></i> Назад к статусам
         </button>
-    </div>
-</a>
+    </a>
+</div>
+
 </#macro>
 
 <#macro m_body>
@@ -23,19 +23,20 @@
                 <h3 class="box-title">Добавить статус</h3>
             </div><!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="/operator/statuses/add" method="post">
+            <@form.form commandName="status_form" action="/operator/statuses/add" acceptCharset="UTF-8" method="post">
                 <div class="box-body">
                     <div class="form-group">
                         <label for="name">Статус</label>
-                        <input required="required" type="text" maxlength="100" class="form-control" id="name"
-                               name="name"
-                               placeholder="Введите название">
+                        <@form.input path="name" type="text" maxlength="100" class="form-control" id="name"
+                        name="name"
+                        placeholder="Введите название"/>
                     </div>
+                    <p align="center"><@form.errors path="name" cssStyle="color: #ab2020;"/></p>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary">Добавить</button>
                 </div>
-            </form>
+            </@form.form>
         </div>
     </div>
 </div>
