@@ -1,6 +1,12 @@
 package ru.kpfu.itis.leontjev.warranty_department.controller;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -12,13 +18,18 @@ import ru.kpfu.itis.leontjev.warranty_department.form.EditOrderForm;
 import ru.kpfu.itis.leontjev.warranty_department.service.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 /**
  * Created by Alexander on 08/05/2016.
  */
 @Controller
 public class OrderController {
+
+
     @Autowired
     DeviceTypeService deviceTypeService;
 
@@ -216,6 +227,82 @@ public class OrderController {
         orderService.update(order);
 
         return "redirect:/operator/orders";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/operator/pdf/orders/{id:\\d+}", method = RequestMethod.GET, produces = "application/pdf")
+    public FileSystemResource downloadPdf(@PathVariable Long id, HttpSession session) throws FileNotFoundException, DocumentException {
+        String fontPath = session.getServletContext().getRealPath("/resources/font/");
+        Font font = FontFactory.getFont(fontPath + "OpenSans-Regular.ttf", "Cp1251", BaseFont.EMBEDDED);
+        font.setSize(12);
+
+        Order order = orderService.findById(id);
+
+        String filename = "order" + id + ".pdf";
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        document.open();
+        document.add(new Paragraph("Заказ №" + id, font));
+
+        if (order != null) {
+            PdfPTable t2 = new PdfPTable(2);
+            t2.setSpacingBefore(25);
+            t2.setSpacingAfter(25);
+
+            PdfPCell c11 = new PdfPCell(new Phrase("Дата заявки", font));
+            t2.addCell(c11);
+            PdfPCell c21 = new PdfPCell(new Phrase(order.getOrderDate().toString(), font));
+            t2.addCell(c21);
+
+            PdfPCell c12 = new PdfPCell(new Phrase("Клиент", font));
+            t2.addCell(c12);
+            PdfPCell c22 = new PdfPCell(new Phrase(order.getClient().getName(), font));
+            t2.addCell(c22);
+
+            PdfPCell c13 = new PdfPCell(new Phrase("Адрес клиента", font));
+            t2.addCell(c13);
+            PdfPCell c23 = new PdfPCell(new Phrase(order.getClient().getAddress(), font));
+            t2.addCell(c23);
+
+            PdfPCell c14 = new PdfPCell(new Phrase("Телефон клиента", font));
+            t2.addCell(c14);
+            PdfPCell c24 = new PdfPCell(new Phrase(order.getClient().getPhone(), font));
+            t2.addCell(c24);
+
+            PdfPCell c15 = new PdfPCell(new Phrase("Дата покупки клиентом", font));
+            t2.addCell(c15);
+            PdfPCell c25 = new PdfPCell(new Phrase(order.getPurchaseDate(), font));
+            t2.addCell(c25);
+
+            PdfPCell c16 = new PdfPCell(new Phrase("Тип устройства", font));
+            t2.addCell(c16);
+            PdfPCell c26 = new PdfPCell(new Phrase(order.getDeviceType().getName(), font));
+            t2.addCell(c26);
+
+            PdfPCell c17 = new PdfPCell(new Phrase("Производитель", font));
+            t2.addCell(c17);
+            PdfPCell c27 = new PdfPCell(new Phrase(order.getBrand().getName(), font));
+            t2.addCell(c27);
+
+            PdfPCell c18 = new PdfPCell(new Phrase("Модель", font));
+            t2.addCell(c18);
+            PdfPCell c28 = new PdfPCell(new Phrase(order.getModel(), font));
+            t2.addCell(c28);
+
+            PdfPCell c19 = new PdfPCell(new Phrase("Неисправность", font));
+            t2.addCell(c19);
+            PdfPCell c29 = new PdfPCell(new Phrase(order.getDefect(), font));
+            t2.addCell(c29);
+
+            PdfPCell c110 = new PdfPCell(new Phrase("Статус", font));
+            t2.addCell(c110);
+            PdfPCell c210 = new PdfPCell(new Phrase(order.getStatus().getName(), font));
+            t2.addCell(c210);
+
+            document.add(t2);
+        }
+        document.close();
+        return new FileSystemResource(filename);
     }
 
 }

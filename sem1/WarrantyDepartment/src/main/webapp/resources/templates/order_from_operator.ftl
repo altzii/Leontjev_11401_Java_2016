@@ -5,13 +5,13 @@
 
 <#macro m_body_header>
 
-    <div class="box-header" style="padding: 10px 10px 0px 0px;">
-        <a href="/operator/orders">
+<div class="box-header" style="padding: 10px 10px 0px 0px;">
+    <a href="/operator/orders">
         <button class="btn btn-default" style="padding: 4px 8px; margin: -2px; float: right;"><i
                 class="fa fa-back"></i> Назад к заявкам
         </button>
-        </a>
-    </div>
+    </a>
+</div>
 
 </#macro>
 
@@ -62,9 +62,9 @@
             <tr>
                 <td><b>Отправлен в АСЦ</b></td>
                 <#if order.sentDate??>
-                <td>${order.sentDate}</td>
+                    <td>${order.sentDate}</td>
                 <#else>
-                <td>Дата не задана</td>
+                    <td>Дата не задана</td>
                 </#if>
             </tr>
             <tr>
@@ -83,6 +83,14 @@
         </tr>
         </tbody>
     </table>
+
+    <div class="box-footer" align="right">
+        <a href="/operator/pdf/orders/${order.id}">
+            <button class="btn btn-primary">Документ</button>
+        </a>
+    </div>
+
+
 </div>
 </#macro>
 
