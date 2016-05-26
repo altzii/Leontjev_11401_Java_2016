@@ -12,6 +12,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -24,6 +26,10 @@ public class Main extends Application {
     int stickWidth = 100;
     int stickHeight = 20;
 
+    Text score = new Text();
+    Text level = new Text();
+
+
     Circle ball = new Circle(ballSize);
     Rectangle stick = new Rectangle(stickWidth, stickHeight);
 
@@ -31,7 +37,9 @@ public class Main extends Application {
     boolean runningLeft = false;
     boolean running = true;
 
-    int score = 0;
+    int count = 0;
+
+    int n;
 
     Action action = Action.NONE;
 
@@ -55,16 +63,37 @@ public class Main extends Application {
                     return;
                 }
 
+                if (count > 4) {
+                    n = 8;
+                    level.setText("Level: 2");
+
+                    if (count > 9) {
+                        n = 10;
+                        level.setText("Level: 3");
+
+                        if (count > 14) {
+                            n = 12;
+                            level.setText("Level: 4");
+
+                            if (count > 19) {
+                                n = 14;
+                                level.setText("Level: 5");
+                            }
+                        }
+                    }
+                }
+
+
                 //движение платформы (влево или вправо)
                 switch (action) {
                     case LEFT:
-                        if (stick.getTranslateX() - 7 >= 0) {
-                            stick.setTranslateX(stick.getTranslateX() - 7);
+                        if (stick.getTranslateX() - 10 >= 0) {
+                            stick.setTranslateX(stick.getTranslateX() - 10);
                         }
                         break;
                     case RIGHT:
-                        if (stick.getTranslateX() + stickWidth + 7 <= paneWidth) {
-                            stick.setTranslateX(stick.getTranslateX() + 7);
+                        if (stick.getTranslateX() + stickWidth + 10 <= paneWidth) {
+                            stick.setTranslateX(stick.getTranslateX() + 10);
                         }
                         break;
                     case NONE:
@@ -72,58 +101,85 @@ public class Main extends Application {
                 }
 
                 if (runningLeft) {
-                    ball.setTranslateX(ball.getTranslateX() - 5);      //мяч двигается влево
+                    ball.setTranslateX(ball.getTranslateX() - n);      //мяч двигается влево
                 } else {
-                    ball.setTranslateX(ball.getTranslateX() + 5);      //мяч двигается вправо
+                    ball.setTranslateX(ball.getTranslateX() + n);      //мяч двигается вправо
                 }
-
 
                 if (runningUp) {
-                    ball.setTranslateY(ball.getTranslateY() - 5);       //мяч двигается вверх
+                    ball.setTranslateY(ball.getTranslateY() - n);       //мяч двигается вверх
                 } else {
-                    ball.setTranslateY(ball.getTranslateY() + 5);      //мяч двигается вниз
+                    ball.setTranslateY(ball.getTranslateY() + n);      //мяч двигается вниз
                 }
 
-
-                if (ball.getTranslateX() - ballSize == 0) {     //врезался в левую границу
+                if (ball.getTranslateX() - ballSize <= 0) {     //врезался в левую границу
                     runningLeft = false;
-                } else if (ball.getTranslateX() + ballSize == paneWidth) {    //врезался в правую границу
+                } else if (ball.getTranslateX() + ballSize >= paneWidth) {    //врезался в правую границу
                     runningLeft = true;
                 }
 
-                if (ball.getTranslateY() - ballSize == 0) {    //врезался в верхнюю границу
+                if (ball.getTranslateY() - ballSize <= 0) {    //врезался в верхнюю границу
                     runningUp = false;
-                } else if ((ball.getTranslateY() + ballSize == paneHeight - stickHeight &&
+                } else if ((ball.getTranslateY() + ballSize >= paneHeight - stickHeight &&
                         ball.getTranslateX() + ballSize >= stick.getTranslateX() &&
-                        ball.getTranslateX() + ballSize <= stick.getTranslateX() + stickWidth)) {
-                    System.out.println(score);
-                    score++;
+                        ball.getTranslateX() - ballSize <= stick.getTranslateX() + stickWidth)) {
+                    count++;
+                    score.setText("Score: " + count + "");
                     runningUp = true;
+                }
+
+                if (ball.getTranslateY() + ballSize >= paneHeight) {
+                    stopGame();
                 }
             }
         });
 
         pane.getChildren().add(stick);
         pane.getChildren().add(ball);
+        pane.getChildren().add(score);
+        pane.getChildren().add(level);
 
         timeline.getKeyFrames().add(keyFrame);
         timeline.setCycleCount(Animation.INDEFINITE);
 
+
         return pane;
     }
 
+    public void stopGame() {
+        running = false;
+        timeline.stop();
+    }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Pane pane = initialize();
-        Scene scene = new Scene(pane);
+    public void startGame() {
+        n = 5;
+        count = 0;
+
+        score.setLayoutX(30);
+        score.setLayoutY(30);
+        score.setFont(Font.font(20));
+        score.setText("Score: 0");
+
+        level.setLayoutX(paneWidth - 100);
+        level.setLayoutY(30);
+        level.setFont(Font.font(20));
+        level.setText("Level: 1");
 
         ball.setTranslateX(300);
         ball.setTranslateY(600);
         ball.setFill(Color.BLACK);
 
+        running = true;
+        runningUp = true;
         timeline.play();
 
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Pane pane = initialize();
+
+        Scene scene = new Scene(pane);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -134,6 +190,11 @@ public class Main extends Application {
                     case RIGHT:
                         action = Action.RIGHT;
                         break;
+                    case R:
+                        if (!running) {
+                            startGame();
+                            break;
+                        }
                 }
             }
         });
@@ -155,8 +216,9 @@ public class Main extends Application {
         primaryStage.setTitle("Game");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
 
+        startGame();
+    }
 
     public static void main(String[] args) {
         launch(args);
