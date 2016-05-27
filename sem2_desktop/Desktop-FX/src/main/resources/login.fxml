@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+
+<AnchorPane prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.leontjev.desktop_fx.controller.SigninController">
+    <children>
+        <Label layoutX="192.0" layoutY="57.0" text="Вход в панель управления" textAlignment="CENTER">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+
+        <TextField fx:id="loginField" layoutX="268.0" layoutY="151.0" prefHeight="39.0" prefWidth="264.0" promptText="Введите логин" style="-fx-border-color: #818181 #818181 #818181 #818181; -fx-background-color: #fff;" />
+
+        <PasswordField fx:id="passwordField" layoutX="268.0" layoutY="207.0" prefHeight="39.0" prefWidth="264.0" promptText="Введите пароль" style="-fx-border-color: #818181 #818181 #818181 #818181; -fx-background-color: #fff;" />
+
+        <Button fx:id="signinButton" alignment="CENTER" layoutX="360.0" layoutY="284.0" mnemonicParsing="false" onMouseClicked="#handleLogin" style="-fx-border-color: #818181; -fx-background-color: #803A76;" text="Войти" textFill="WHITE" textOverrun="CLIP">
+            <font>
+                <Font size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </children>
+</AnchorPane>

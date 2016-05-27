@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+
+<AnchorPane prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.leontjev.desktop_fx.controller.AddClientController">
+    <children>
+        <Label layoutX="257.0" layoutY="46.0" text="Добавить клиента" textAlignment="CENTER">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+
+        <TextField fx:id="nameField" layoutX="269.0" layoutY="110.0" prefHeight="39.0" prefWidth="264.0" promptText="Введите  ФИО" style="-fx-border-color: #818181 #818181 #818181 #818181; -fx-background-color: #fff;" />
+
+        <TextField fx:id="phoneField" layoutX="269.0" layoutY="161.0" prefHeight="39.0" prefWidth="264.0" promptText="Введите номер" style="-fx-border-color: #818181 #818181 #818181 #818181; -fx-background-color: #fff;" />
+
+        <TextField fx:id="addressField" layoutX="268.0" layoutY="211.0" prefHeight="39.0" prefWidth="264.0" promptText="Введите адрес" style="-fx-border-color: #818181 #818181 #818181 #818181; -fx-background-color: #fff;" />
+
+        <Button fx:id="addClientButton" alignment="CENTER" layoutX="307.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#handleAddClient" style="-fx-border-color: #818181; -fx-background-color: #803A76;" text="Добавить клиента" textFill="WHITE" textOverrun="CLIP">
+            <font>
+                <Font size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </children>
+</AnchorPane>
