@@ -45,7 +45,6 @@ public class ClientsController {
     }
 
     private void initClients() {
-        if (clients.size() == 0) {
             try {
                 RestTemplate restTemplate = new RestTemplate();
                 String url = "http://localhost:8080/rest/api/clients";
@@ -54,8 +53,8 @@ public class ClientsController {
                 headers.add("Authorization", mainApp.getUser().getHeader());
                 HttpEntity<String> request = new HttpEntity<String>(headers);
                 String json = restTemplate.exchange(url, HttpMethod.GET, request, String.class).getBody();
-                List<Client> usersList = objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(List.class, Client.class));
-                clients.addAll(usersList);
+                List<Client> clientList = objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(List.class, Client.class));
+                clients.addAll(clientList);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ResourceAccessException e) {
@@ -66,7 +65,7 @@ public class ClientsController {
                 alert.showAndWait();
                 mainApp.showLogin();
             }
-        }
+
     }
 
     @FXML

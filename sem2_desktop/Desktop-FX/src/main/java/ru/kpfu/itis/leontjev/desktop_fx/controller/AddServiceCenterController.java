@@ -15,7 +15,7 @@ import ru.kpfu.itis.leontjev.desktop_fx.MainApplication;
  * Created by alt on 27/05/2016.
  */
 
-public class AddClientController {
+public class AddServiceCenterController {
     @FXML
     private TextField nameField;
     @FXML
@@ -31,17 +31,17 @@ public class AddClientController {
     private void showOk() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.initOwner(mainApp.getPrimaryStage());
-        alert.setTitle("Клиент успешно добавлен");
-        alert.setContentText("Клиент успешно добавлен");
+        alert.setTitle("Сервисный центр успешно добавлен");
+        alert.setContentText("Сервисный центр успешно добавлен");
         alert.showAndWait();
     }
 
     @FXML
-    private void handleAddClient() {
+    private void handleAddServiceCenter() {
 
         try {
             RestTemplate restTemplate = new RestTemplate();
-            String url = "http://localhost:8080/rest/api/clients/add";
+            String url = "http://localhost:8080/rest/api/service_centers/add";
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", mainApp.getUser().getHeader());
@@ -56,7 +56,7 @@ public class AddClientController {
             Boolean added = restTemplate.postForEntity(url, request, Boolean.class).getBody();
 
             if (added) {
-                mainApp.showAddClient();
+                mainApp.showAddServiceCenter();
                 showOk();
             }
             else {

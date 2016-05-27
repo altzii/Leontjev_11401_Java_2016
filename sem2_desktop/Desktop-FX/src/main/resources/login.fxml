@@ -20,7 +20,7 @@
 
         <PasswordField fx:id="passwordField" layoutX="268.0" layoutY="207.0" prefHeight="39.0" prefWidth="264.0" promptText="Введите пароль" style="-fx-border-color: #818181 #818181 #818181 #818181; -fx-background-color: #fff;" />
 
-        <Button fx:id="signinButton" alignment="CENTER" layoutX="360.0" layoutY="284.0" mnemonicParsing="false" onMouseClicked="#handleLogin" style="-fx-border-color: #818181; -fx-background-color: #803A76;" text="Войти" textFill="WHITE" textOverrun="CLIP">
+        <Button fx:id="signinButton" alignment="CENTER" layoutX="360.0" layoutY="284.0" mnemonicParsing="false" onMouseClicked="#handleSignin" style="-fx-border-color: #818181; -fx-background-color: #803A76;" text="Войти" textFill="WHITE" textOverrun="CLIP">
             <font>
                 <Font size="18.0" />
             </font>

@@ -35,4 +35,48 @@ public class MenuController {
             mainApp.showAddClient();
         }
     }
+
+    @FXML
+    private void handleServiceCenters() {
+        if (mainApp.getCurrentPage() != Page.SERVICE_CENTERS) {
+            mainApp.showServiceCenters();
+        }
+    }
+
+    @FXML
+    private void handleAddServiceCenter() {
+        if (mainApp.getCurrentPage() != Page.ADD_SERVICE_CENTER) {
+            mainApp.showAddServiceCenter();
+        }
+    }
+
+    @FXML
+    private void handleDeviceTypes() {
+        if (mainApp.getCurrentPage() != Page.DEVICE_TYPES) {
+            mainApp.showDeviceTypes();
+        }
+    }
+
+    @FXML
+    private void handleAddDeviceType() {
+        if (mainApp.getCurrentPage() != Page.ADD_DEVICE_TYPE) {
+            mainApp.showAddDeviceType();
+        }
+    }
+
+    @FXML
+    private void handleBrands() {
+        if (mainApp.getCurrentPage() != Page.BRANDS) {
+            mainApp.showBrands();
+        }
+    }
+
+    @FXML
+    private void handleAddBrand() {
+        if (mainApp.getCurrentPage() != Page.ADD_BRAND) {
+            mainApp.showAddBrand();
+        }
+    }
+
+
 }

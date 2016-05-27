@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+
+<AnchorPane prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kpfu.itis.leontjev.desktop_fx.controller.AddBrandController">
+    <children>
+        <Label layoutX="201.0" layoutY="53.0" text="Добавить производителя" textAlignment="CENTER">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+
+        <TextField fx:id="nameField" layoutX="269.0" layoutY="120.0" prefHeight="39.0" prefWidth="264.0" promptText="Введите название" style="-fx-border-color: #818181 #818181 #818181 #818181; -fx-background-color: #fff;" />
+
+        <Button fx:id="addBrandButton" alignment="CENTER" layoutX="275.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#handleAddBrand" style="-fx-border-color: #818181; -fx-background-color: #803A76;" text="Добавить производителя" textFill="WHITE" textOverrun="CLIP">
+            <font>
+                <Font size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </children>
+</AnchorPane>

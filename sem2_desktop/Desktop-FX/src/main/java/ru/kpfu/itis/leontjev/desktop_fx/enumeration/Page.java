@@ -5,5 +5,9 @@ package ru.kpfu.itis.leontjev.desktop_fx.enumeration;
  */
 
 public enum Page {
-    CLIENTS, LOGIN, ADD_CLIENT
+    LOGIN,
+    ADD_SERVICE_CENTER, SERVICE_CENTERS,
+    ADD_CLIENT, CLIENTS,
+    ADD_DEVICE_TYPE, DEVICE_TYPES,
+    ADD_BRAND, BRANDS
 }

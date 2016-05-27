@@ -15,13 +15,9 @@ import ru.kpfu.itis.leontjev.desktop_fx.MainApplication;
  * Created by alt on 27/05/2016.
  */
 
-public class AddClientController {
+public class AddDeviceTypeController {
     @FXML
     private TextField nameField;
-    @FXML
-    private TextField phoneField;
-    @FXML
-    private TextField addressField;
 
     private MainApplication mainApp;
     public void setMainApp(MainApplication mainApp) {
@@ -31,32 +27,30 @@ public class AddClientController {
     private void showOk() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.initOwner(mainApp.getPrimaryStage());
-        alert.setTitle("Клиент успешно добавлен");
-        alert.setContentText("Клиент успешно добавлен");
+        alert.setTitle("Тип устройств успешно добавлен");
+        alert.setContentText("Тип устройств успешно добавлен");
         alert.showAndWait();
     }
 
     @FXML
-    private void handleAddClient() {
+    private void handleAddDeviceType() {
 
         try {
             RestTemplate restTemplate = new RestTemplate();
-            String url = "http://localhost:8080/rest/api/clients/add";
+            String url = "http://localhost:8080/rest/api/device_types/add";
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", mainApp.getUser().getHeader());
 
             MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
             params.add("name", nameField.getText());
-            params.add("phone", phoneField.getText());
-            params.add("address", addressField.getText());
 
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 
             Boolean added = restTemplate.postForEntity(url, request, Boolean.class).getBody();
 
             if (added) {
-                mainApp.showAddClient();
+                mainApp.showAddDeviceType();
                 showOk();
             }
             else {

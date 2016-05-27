@@ -33,7 +33,7 @@ public class SigninController {
     }
 
     @FXML
-    private void handleLogin() {
+    private void handleSignin() {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8080/rest/api/signin";
         HttpHeaders headers = new HttpHeaders();

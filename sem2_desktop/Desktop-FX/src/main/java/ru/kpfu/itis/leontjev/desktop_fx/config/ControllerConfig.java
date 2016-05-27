@@ -28,6 +28,36 @@ public class ControllerConfig {
         return loadView("add_client.fxml");
     }
 
+    @Bean(name = "serviceCentersLoader")
+    public FXMLLoader ServiceCentersLoader() {
+        return loadView("service_centers.fxml");
+    }
+
+    @Bean(name = "addServiceCenterLoader")
+    public FXMLLoader addServiceCenterLoader() {
+        return loadView("add_service_center.fxml");
+    }
+
+    @Bean(name = "deviceTypesLoader")
+    public FXMLLoader deviceTypesLoader() {
+        return loadView("device_types.fxml");
+    }
+
+    @Bean(name = "addDeviceTypeLoader")
+    public FXMLLoader addDeviceTypeLoader() {
+        return loadView("add_device_type.fxml");
+    }
+
+    @Bean(name = "brandsLoader")
+    public FXMLLoader brandsLoader() {
+        return loadView("brands.fxml");
+    }
+
+    @Bean(name = "addBrandLoader")
+    public FXMLLoader addBrandLoader() {
+        return loadView("add_brand.fxml");
+    }
+
     @Bean(name = "menuLoader")
     public FXMLLoader getMenuLoader() {
         return loadView("menu.fxml");

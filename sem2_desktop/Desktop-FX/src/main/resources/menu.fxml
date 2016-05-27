@@ -12,6 +12,24 @@
                 <MenuItem mnemonicParsing="false" text="Посмотреть" onAction="#handleClients"/>
                 <MenuItem mnemonicParsing="false" text="Добавить" onAction="#handleAddClient"/>
             </Menu>
+            <Menu mnemonicParsing="false" text="Сервисные центры">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Посмотреть" onAction="#handleServiceCenters"/>
+                    <MenuItem mnemonicParsing="false" text="Добавить" onAction="#handleAddServiceCenter"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Типы устройств">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Посмотреть" onAction="#handleDeviceTypes"/>
+                    <MenuItem mnemonicParsing="false" text="Добавить" onAction="#handleAddDeviceType"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Производители">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Посмотреть" onAction="#handleBrands"/>
+                    <MenuItem mnemonicParsing="false" text="Добавить" onAction="#handleAddBrand"/>
+                </items>
+            </Menu>
         </MenuBar>
     </top>
 </BorderPane>
