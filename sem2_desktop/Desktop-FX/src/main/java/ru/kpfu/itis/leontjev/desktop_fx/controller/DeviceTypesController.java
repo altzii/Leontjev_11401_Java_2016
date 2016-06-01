@@ -41,6 +41,7 @@ public class DeviceTypesController {
 
     private void initDeviceTypes() {
         try {
+            deviceTypes = FXCollections.observableArrayList();
             RestTemplate restTemplate = new RestTemplate();
             String url = "http://localhost:8080/rest/api/device_types";
             ObjectMapper objectMapper = new ObjectMapper();

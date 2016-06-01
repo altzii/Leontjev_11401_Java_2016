@@ -50,7 +50,7 @@ public class AddBrandController {
             Boolean added = restTemplate.postForEntity(url, request, Boolean.class).getBody();
 
             if (added) {
-                mainApp.showAddDeviceType();
+                mainApp.showBrands();
                 showOk();
             }
             else {

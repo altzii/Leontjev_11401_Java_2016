@@ -50,7 +50,7 @@ public class AddDeviceTypeController {
             Boolean added = restTemplate.postForEntity(url, request, Boolean.class).getBody();
 
             if (added) {
-                mainApp.showAddDeviceType();
+                mainApp.showDeviceTypes();
                 showOk();
             }
             else {

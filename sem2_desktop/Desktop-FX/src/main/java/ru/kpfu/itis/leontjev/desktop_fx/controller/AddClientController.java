@@ -56,7 +56,7 @@ public class AddClientController {
             Boolean added = restTemplate.postForEntity(url, request, Boolean.class).getBody();
 
             if (added) {
-                mainApp.showAddClient();
+                mainApp.showClients();
                 showOk();
             }
             else {

@@ -45,6 +45,7 @@ public class ServiceCentersController {
 
     private void initServiceCenters() {
         try {
+            serviceCenters = FXCollections.observableArrayList();
             RestTemplate restTemplate = new RestTemplate();
             String url = "http://localhost:8080/rest/api/service_centers";
             ObjectMapper objectMapper = new ObjectMapper();

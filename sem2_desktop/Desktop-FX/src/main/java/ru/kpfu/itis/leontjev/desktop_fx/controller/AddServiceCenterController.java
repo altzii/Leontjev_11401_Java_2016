@@ -56,7 +56,7 @@ public class AddServiceCenterController {
             Boolean added = restTemplate.postForEntity(url, request, Boolean.class).getBody();
 
             if (added) {
-                mainApp.showAddServiceCenter();
+                mainApp.showServiceCenters();
                 showOk();
             }
             else {

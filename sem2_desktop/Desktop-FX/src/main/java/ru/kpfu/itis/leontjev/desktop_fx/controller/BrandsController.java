@@ -41,6 +41,7 @@ public class BrandsController {
 
     private void initBrands() {
         try {
+            brands = FXCollections.observableArrayList();
             RestTemplate restTemplate = new RestTemplate();
             String url = "http://localhost:8080/rest/api/brands";
             ObjectMapper objectMapper = new ObjectMapper();

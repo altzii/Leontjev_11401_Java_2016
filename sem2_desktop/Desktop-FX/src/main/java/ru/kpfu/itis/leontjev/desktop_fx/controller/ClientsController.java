@@ -46,6 +46,7 @@ public class ClientsController {
 
     private void initClients() {
             try {
+                clients = FXCollections.observableArrayList();
                 RestTemplate restTemplate = new RestTemplate();
                 String url = "http://localhost:8080/rest/api/clients";
                 ObjectMapper objectMapper = new ObjectMapper();
