@@ -17,78 +17,93 @@
 
 <#macro m_body>
 <div class="box-body">
-    <h1 align="center">Заявка №${order.id}</h1>
+    <#if !not_found??>
+        <h1 align="center">Заявка №${order.id}</h1>
 
-    <table class="table table-striped">
-        <tbody>
-        <tr>
-            <td><b>Дата заявки</b></td>
-            <td>${order.orderDate}</td>
-        </tr>
-        <tr>
-            <td><b>Клиент</b></td>
-            <td>${order.client.name}</td>
-        </tr>
-        <tr>
-            <td><b>Адрес клиента</b></td>
-            <td>${order.client.address}</td>
-        </tr>
-        <tr>
-            <td><b>Телефон клиента</b></td>
-            <td>${order.client.phone}</td>
-        </tr>
-        <tr>
-            <td><b>Дата покупки клиентом</b></td>
-            <td>${order.purchaseDate}</td>
-        </tr>
-        <tr>
-            <td><b>Тип устройства</b></td>
-            <td>${order.deviceType.name}</td>
-        </tr>
-        <tr>
-            <td><b>Производитель</b></td>
-            <td>${order.brand.name}</td>
-        </tr>
-        <tr>
-            <td><b>Модель</b></td>
-            <td>${order.model}</td>
-        </tr>
-        <tr>
-            <td><b>Неисправность</b></td>
-            <td>${order.defect}</td>
-        </tr>
-
-            <#if order.serviceCenter??>
+        <table class="table table-striped">
+            <tbody>
             <tr>
-                <td><b>Отправлен в АСЦ</b></td>
-                <#if order.sentDate??>
-                    <td>${order.sentDate}</td>
+                <td><b>Дата заявки</b></td>
+                <td>${order.orderDate}</td>
+            </tr>
+            <tr>
+                <td><b>Клиент</b></td>
+                <td><a href="/operator/clients/${order.client.id}">${order.client.name}</a></td>
+            </tr>
+            <tr>
+                <td><b>Адрес клиента</b></td>
+                <td>${order.client.address}</td>
+            </tr>
+            <tr>
+                <td><b>Телефон клиента</b></td>
+                <td>${order.client.phone}</td>
+            </tr>
+            <tr>
+                <td><b>Дата покупки клиентом</b></td>
+                <#if order.purchaseDate??>
+                    <td>${order.purchaseDate}</td>
                 <#else>
                     <td>Дата не задана</td>
                 </#if>
+
             </tr>
             <tr>
-                <td><b>Адрес АСЦ</b></td>
-                <td>${order.serviceCenter.address}</td>
+                <td><b>Тип устройства</b></td>
+                <td>${order.deviceType.name}</td>
             </tr>
             <tr>
-                <td><b>Телефон АСЦ</b></td>
-                <td>${order.serviceCenter.phone}</td>
+                <td><b>Производитель</b></td>
+                <td>${order.brand.name}</td>
             </tr>
-            </#if>
+            <tr>
+                <td><b>Модель</b></td>
+                <td>${order.model}</td>
+            </tr>
+            <tr>
+                <td><b>Неисправность</b></td>
+                <td>${order.defect}</td>
+            </tr>
 
-        <tr>
-            <td><b>Статус</b></td>
-            <td>${order.status.name}</td>
-        </tr>
-        </tbody>
-    </table>
+                <#if order.serviceCenter??>
+                <tr>
+                    <td><b>Отправлен в АСЦ</b></td>
+                    <#if order.sentDate??>
+                        <td>${order.sentDate}</td>
+                    <#else>
+                        <td>Дата не задана</td>
+                    </#if>
+                </tr>
+                <tr>
+                    <td><b>Сервисный центр</b></td>
+                    <td><a href="/operator/service_centers/${order.serviceCenter.id}">${order.serviceCenter.name}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Адрес АСЦ</b></td>
+                    <td>${order.serviceCenter.address}</td>
+                </tr>
+                <tr>
+                    <td><b>Телефон АСЦ</b></td>
+                    <td>${order.serviceCenter.phone}</td>
+                </tr>
+                </#if>
 
-    <div class="box-footer" align="right">
-        <a href="/operator/pdf/orders/${order.id}">
-            <button class="btn btn-primary">Документ</button>
-        </a>
-    </div>
+            <tr>
+                <td><b>Статус</b></td>
+                <td>${order.status.name}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="box-footer" align="right">
+            <a href="/operator/pdf/orders/${order.id}">
+                <button class="btn btn-primary">Документ</button>
+            </a>
+        </div>
+
+    <#else>
+        <h3 align="center">Такой заявки не существует</h3>
+    </#if>
 
 
 </div>
@@ -103,4 +118,8 @@
 </div>
 </#macro>
 
-<@main title="Заявка №${order.id}"/>
+<#if not_found??>
+    <@main title="Заявка"/>
+<#else>
+    <@main title="Заявка №${order.id}"/>
+</#if>

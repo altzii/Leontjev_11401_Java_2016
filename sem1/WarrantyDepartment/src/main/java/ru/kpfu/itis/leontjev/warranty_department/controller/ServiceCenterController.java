@@ -60,4 +60,53 @@ public class ServiceCenterController {
 
         return "redirect:/operator/service_centers/";
     }
+
+    @RequestMapping(value = "/operator/edit/service_centers/{id:\\d+}", method = RequestMethod.GET)
+    public String editServiceCenterPage(@PathVariable Long id, ModelMap modelMap) {
+        ServiceCenter serviceCenter = serviceCenterService.findById(id);
+
+        if (serviceCenter != null) {
+            modelMap.put("service_center", serviceCenter);
+            modelMap.addAttribute("service_center_form", new AddServiceCenterForm());
+        } else {
+            modelMap.put("not_found", true);
+        }
+
+        return "edit_service_center";
+    }
+
+    @RequestMapping(value = "/operator/edit/service_centers/{id:\\d+}", method = RequestMethod.POST)
+    public String editServiceCenter(@PathVariable Long id, ModelMap modelMap, @ModelAttribute("service_center_form") @Valid AddServiceCenterForm form, BindingResult result) {
+        ServiceCenter serviceCenter = serviceCenterService.findById(id);
+
+        if (result.hasErrors()) {
+            modelMap.put("service_center", serviceCenter);
+
+            return "edit_service_center";
+        }
+
+        String name = form.getName();
+        String address = form.getAddress();
+        String phone = form.getPhone();
+
+        serviceCenter.setName(name);
+        serviceCenter.setAddress(address);
+        serviceCenter.setPhone(phone);
+
+        serviceCenterService.update(serviceCenter);
+
+        return "redirect:/operator/service_centers/" + id;
+    }
+
+    @RequestMapping(value = "/operator/service_centers/{id:\\d+}", method = RequestMethod.GET)
+    public String serviceCenterPage(@PathVariable Long id, ModelMap modelMap) {
+       ServiceCenter serviceCenter = serviceCenterService.findById(id);
+
+        if (serviceCenter != null) {
+            modelMap.put("service_center", serviceCenter);
+        } else {
+            modelMap.put("not_found", true);
+        }
+        return "service_center";
+    }
 }

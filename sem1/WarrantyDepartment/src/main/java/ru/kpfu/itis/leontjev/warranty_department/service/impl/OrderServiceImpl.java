@@ -54,4 +54,39 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findAllByStatus(Status status) {
         return orderRepository.findAllByStatus(status);
     }
+
+    @Override
+    public List<Order> findAllByOrderByIdAsc() {
+        return orderRepository.findAllByOrderByIdAsc();
+    }
+
+    @Override
+    public List<Order> findAllByOrderByIdDesc() {
+        return orderRepository.findAllByOrderByIdDesc();
+    }
+
+    @Override
+    public List<Order> findAllByOrderByClientNameAsc() {
+        return orderRepository.findAllByOrderByClient_NameAsc();
+    }
+
+    @Override
+    public List<Order> findAllByOrderByClientNameDesc() {
+        return orderRepository.findAllByOrderByClient_NameDesc();
+    }
+
+    @Override
+    public List<Order> findAllByOrderByStatusNameAsc() {
+        return orderRepository.findAllByOrderByStatus_NameAsc();
+    }
+
+    @Override
+    public List<Order> findAllByOrderByStatusNameDesc() {
+        return orderRepository.findAllByOrderByStatus_NameDesc();
+    }
+
+    @Override
+    public List<Order> findAllByClientStatusContaing(String client_Name, String status_Name) {
+        return orderRepository.findAllByClient_NameContainingOrStatus_NameContaining(client_Name, status_Name);
+    }
 }

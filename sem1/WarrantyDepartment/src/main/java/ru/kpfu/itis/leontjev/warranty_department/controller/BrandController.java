@@ -56,5 +56,39 @@ public class BrandController {
         return "redirect:/operator/brands/";
     }
 
+    @RequestMapping(value = "/operator/edit/brands/{id:\\d+}", method = RequestMethod.GET)
+    public String editBrandPage(@PathVariable Long id, ModelMap modelMap) {
+        Brand brand = brandService.findById(id);
+
+        if (brand != null) {
+            modelMap.put("brand", brand);
+            modelMap.addAttribute("brand_form", new AddBrandForm());
+        } else {
+            modelMap.put("not_found", true);
+        }
+
+        return "edit_brand";
+    }
+
+
+    @RequestMapping(value = "/operator/edit/brands/{id:\\d+}", method = RequestMethod.POST)
+    public String editDeviceType(@PathVariable Long id, ModelMap modelMap, @ModelAttribute("brand_form") @Valid AddBrandForm form, BindingResult result) {
+        Brand brand = brandService.findById(id);
+
+        if (result.hasErrors()) {
+            modelMap.put("brand", brand);
+
+            return "edit_brand";
+        }
+
+        String name = form.getName();
+
+        brand.setName(name);
+
+        brandService.update(brand);
+
+        return "redirect:/operator/brands/";
+    }
+
 
 }

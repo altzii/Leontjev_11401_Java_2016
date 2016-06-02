@@ -1,5 +1,7 @@
 package ru.kpfu.itis.leontjev.warranty_department.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -67,6 +69,7 @@ public class User {
     }
 
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "client_id", referencedColumnName = "id")
 
     public Client getClient() {

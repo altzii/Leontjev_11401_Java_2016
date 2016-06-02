@@ -23,7 +23,7 @@
             <th>Клиент</th>
             <th>Номер</th>
             <th>Адрес</th>
-            <th>Редактировать</th>
+            <th>Действия</th>
         </tr>
         </thead>
         <tbody>
@@ -34,12 +34,30 @@
                     <td>${client.phone}</td>
                     <td>${client.address}</td>
                     <td>
-                        <form method="post" action="/operator/delete/clients/${client.id}">
-                            <button onclick="return confirm('Вы уверене, что хотите удалить этого клиента?')"
-                                    class="btn btn-default" style="padding: 4px 8px; margin: -2px;" type="submit"><i
-                                    class="fa fa-trash-o"></i> Удалить
-                            </button>
-                        </form>
+                        <a href="/operator/clients/${client.id}" <i class="fa fa-eye"></i>
+
+                        <@security.authorize access="hasRole('ROLE_ADMIN')">
+                            <form id="deleteClient${client.id}" method="post"
+                                  action="/operator/delete/clients/${client.id}">
+                            </form>
+
+                            <script>
+                                function confirmDelete() {
+                                    if (confirm("Вы подтверждаете удаление?")) {
+                                        document.getElementById('deleteClient${client.id}').submit();
+                                    } else {
+                                        return false;
+                                    }
+                                }
+                            </script>
+
+                            <a href="#" style="padding-left: 4px;"
+                               onclick="confirmDelete();">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                        </@security.authorize>
+                        <a style="padding-left: 4px;" href="/operator/edit/clients/${client.id}"><i
+                                class="fa fa-edit"></i></a>
                     </td>
                 </tr>
                 </#list>

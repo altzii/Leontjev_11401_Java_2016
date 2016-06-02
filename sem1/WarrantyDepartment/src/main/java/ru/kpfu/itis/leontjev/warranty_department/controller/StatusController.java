@@ -56,4 +56,38 @@ public class StatusController {
 
         return "redirect:/operator/statuses/";
     }
+
+    @RequestMapping(value = "/operator/edit/statuses/{id:\\d+}", method = RequestMethod.GET)
+    public String editStatusPage(@PathVariable Long id, ModelMap modelMap) {
+        Status status = statusService.findById(id);
+
+        if (status != null) {
+            modelMap.put("status", status);
+            modelMap.addAttribute("status_form", new AddStatusForm());
+        } else {
+            modelMap.put("not_found", true);
+        }
+
+        return "edit_status";
+    }
+
+
+    @RequestMapping(value = "/operator/edit/statuses/{id:\\d+}", method = RequestMethod.POST)
+    public String editStatus(@PathVariable Long id, ModelMap modelMap, @ModelAttribute("status_form") @Valid AddStatusForm form, BindingResult result) {
+        Status status = statusService.findById(id);
+
+        if (result.hasErrors()) {
+            modelMap.put("status", status);
+
+            return "edit_status";
+        }
+
+        String name = form.getName();
+        status.setName(name);
+
+        statusService.update(status);
+
+        return "redirect:/operator/statuses/";
+    }
+
 }

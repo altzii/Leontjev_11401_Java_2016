@@ -10,9 +10,28 @@ import java.util.List;
  */
 public interface OrderService {
     Order create(Order order);
+
     Order delete(long id);
+
     List<Order> findAll();
+
     Order update(Order order);
+
     Order findById(long id);
+
     List<Order> findAllByStatus(Status status);
+
+    List<Order> findAllByOrderByIdAsc();
+
+    List<Order> findAllByOrderByIdDesc();
+
+    List<Order> findAllByOrderByClientNameAsc();
+
+    List<Order> findAllByOrderByClientNameDesc();
+
+    List<Order> findAllByOrderByStatusNameAsc();
+
+    List<Order> findAllByOrderByStatusNameDesc();
+
+    List<Order> findAllByClientStatusContaing(String client_Name, String status_Name);
 }

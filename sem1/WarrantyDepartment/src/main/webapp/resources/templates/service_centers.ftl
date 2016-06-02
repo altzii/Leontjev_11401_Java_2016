@@ -25,7 +25,7 @@
             <th>Название</th>
             <th>Телефон</th>
             <th>Адрес</th>
-            <th>Редактировать</th>
+            <th>Действия</th>
         </tr>
         </thead>
         <tbody>
@@ -36,13 +36,28 @@
                     <td>${service_center.phone}</td>
                     <td>${service_center.address}</td>
                     <td>
-                        <form method="post" action="/operator/delete/service_centers/${service_center      .id}">
+                        <a href="/operator/service_centers/${service_center.id}" <i class="fa fa-eye"></i>
 
-                            <button onclick="return confirm('Вы уверене, что хотите удалить этот сервисный центр?')"
-                                    class="btn btn-default" style="padding: 4px 8px; margin: -2px;" type="submit"><i
-                                    class="fa fa-trash-o"></i> Удалить
-                            </button>
+                        <form id="deleteServiceCenter${service_center.id}" method="post"
+                              action="/operator/delete/service_centers/${service_center.id}">
                         </form>
+
+                        <script>
+                            function confirmDelete() {
+                                if (confirm("Вы подтверждаете удаление?")) {
+                                    document.getElementById('deleteServiceCenter${service_center.id}').submit();
+                                } else {
+                                    return false;
+                                }
+                            }
+                        </script>
+
+                        <a href="#" style="padding-left: 4px;"
+                           onclick="confirmDelete();">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                        <a style="padding-left: 4px;" href="/operator/edit/service_centers/${service_center.id}"><i
+                                class="fa fa-edit"></i></a>
                     </td>
                 </tr>
                 </#list>

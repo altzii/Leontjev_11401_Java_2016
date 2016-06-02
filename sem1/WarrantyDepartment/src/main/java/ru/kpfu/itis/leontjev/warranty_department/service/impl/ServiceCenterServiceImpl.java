@@ -40,7 +40,7 @@ public class ServiceCenterServiceImpl implements ServiceCenterService {
     @Override
     @Transactional
     public ServiceCenter update(ServiceCenter serviceCenter) {
-        return null;
+        return serviceCenterRepository.saveAndFlush(serviceCenter);
     }
 
     @Override

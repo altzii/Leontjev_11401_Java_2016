@@ -40,7 +40,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @Override
     @Transactional
     public DeviceType update(DeviceType deviceType) {
-        return null;
+        return deviceTypeRepository.saveAndFlush(deviceType);
     }
 
     @Override

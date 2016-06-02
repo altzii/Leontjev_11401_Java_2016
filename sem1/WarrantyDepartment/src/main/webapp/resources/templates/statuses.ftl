@@ -23,25 +23,36 @@
     <table id="example2" class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th>ID</th>
             <th>Статус</th>
-            <th>Редактировать</th>
+            <th>Действия</th>
         </tr>
         </thead>
         <tbody>
             <#if statuses??>
                 <#list statuses as status>
                 <tr>
-                    <td>${status.id}</td>
                     <td>${status.name}</td>
                     <td>
-                        <form method="post" action="/operator/delete/statuses/${status.id}">
-
-                            <button onclick="return confirm('Вы уверене, что хотите удалить этот статус?')"
-                                    class="btn btn-default" style="padding: 4px 8px; margin: -2px;" type="submit"><i
-                                    class="fa fa-trash-o"></i> Удалить
-                            </button>
+                        <form id="deleteStatus${status.id}" method="post"
+                              action="/operator/delete/statuses/${status.id}">
                         </form>
+
+                        <script>
+                            function confirmDelete() {
+                                if (confirm("Вы подтверждаете удаление?")) {
+                                    document.getElementById('deleteStatus${status.id}').submit();
+                                } else {
+                                    return false;
+                                }
+                            }
+                        </script>
+
+                        <a href="#" style="padding-left: 4px;"
+                           onclick="confirmDelete();">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                        <a style="padding-left: 4px;" href="/operator/edit/statuses/${status.id}"><i
+                                class="fa fa-edit"></i></a>
                     </td>
                 </tr>
                 </#list>

@@ -13,13 +13,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ControllerAdvice
 public class GlobalController {
-
     @ModelAttribute()
     public void addUserAttributes(ModelMap model, HttpServletRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             model.put("username", authentication.getName());
-
         }
     }
 }

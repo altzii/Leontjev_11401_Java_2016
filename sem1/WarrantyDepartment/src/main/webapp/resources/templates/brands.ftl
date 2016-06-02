@@ -20,25 +20,36 @@
     <table id="example2" class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th>ID</th>
             <th>Наименование</th>
-            <th>Редактировать</th>
+            <th>Действия</th>
         </tr>
         </thead>
         <tbody>
             <#if brands??>
                 <#list brands as brand>
                 <tr>
-                    <td>${brand.id}</td>
                     <td>${brand.name}</td>
                     <td>
-                        <form method="post" action="/operator/delete/brands/${brand.id}">
-
-                            <button onclick="return confirm('Вы уверене, что хотите удалить этого производителя техники?')"
-                                    class="btn btn-default" style="padding: 4px 8px; margin: -2px;" type="submit"><i
-                                    class="fa fa-trash-o"></i> Удалить
-                            </button>
+                        <form id="deleteBrand${brand.id}" method="post"
+                              action="/operator/delete/brands/${brand.id}">
                         </form>
+
+                        <script>
+                            function confirmDelete() {
+                                if (confirm("Вы подтверждаете удаление?")) {
+                                    document.getElementById('deleteDeviceType${brand.id}').submit();
+                                } else {
+                                    return false;
+                                }
+                            }
+                        </script>
+
+                        <a href="#" style="padding-left: 4px;"
+                           onclick="confirmDelete();">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                        <a style="padding-left: 4px;" href="/operator/edit/brands/${brand.id}"><i
+                                class="fa fa-edit"></i></a>
                     </td>
                 </tr>
                 </#list>

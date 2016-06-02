@@ -27,7 +27,7 @@
 <body class="hold-transition login-page"  <#if from_signup??>onload="$('#myModal').modal()" </#if>>
 <div class="login-box">
     <div class="login-logo">
-        <a href="/"><b>Новая</b> Реальность</a>
+        <a href="/"><b>Гарантийный</b> Отдел</a>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Вход в гарантийный отдел</p>

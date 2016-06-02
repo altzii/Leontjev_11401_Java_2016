@@ -30,7 +30,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="/"><b>Новая</b> Реальность</a>
+        <a href="/"><b>Гарантийный</b> Отдел</a>
     </div>
 
     <div class="register-box-body">

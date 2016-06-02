@@ -20,28 +20,40 @@
     <table id="example2" class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th>ID</th>
             <th>Логин</th>
             <th>email</th>
             <th>Роль</th>
-            <th>Редактировать</th>
+            <th>Действия</th>
         </tr>
         </thead>
         <tbody>
             <#if users??>
                 <#list users as user>
                 <tr>
-                    <td>${user.id}</td>
                     <td>${user.login}</td>
                     <td>${user.email}</td>
                     <td>${user.role}</td>
                     <td>
-                        <form method="post" action="/admin/delete/users/${user.id}">
-                            <button onclick="return confirm('Вы уверене, что хотите удалить этого пользователя?')"
-                                    class="btn btn-default" style="padding: 4px 8px; margin: -2px;" type="submit"><i
-                                    class="fa fa-trash-o"></i> Удалить
-                            </button>
+                        <a href="/operator/users/${user.id}" <i class="fa fa-eye"></i>
+
+                        <form id="deleteUser${user.id}" method="post"
+                              action="/admin/delete/users/${user.id}">
                         </form>
+
+                        <script>
+                            function confirmDelete() {
+                                if (confirm("Вы подтверждаете удаление?")) {
+                                    document.getElementById('deleteUser${user.id}').submit();
+                                } else {
+                                    return false;
+                                }
+                            }
+                        </script>
+
+                        <a href="#" style="padding-left: 4px;"
+                           onclick="confirmDelete();">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
                     </td>
                 </tr>
                 </#list>

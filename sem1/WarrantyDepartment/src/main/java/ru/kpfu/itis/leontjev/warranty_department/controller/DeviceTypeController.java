@@ -56,4 +56,38 @@ public class DeviceTypeController {
 
         return "redirect:/operator/device_types/";
     }
+
+    @RequestMapping(value = "/operator/edit/device_types/{id:\\d+}", method = RequestMethod.GET)
+    public String editDeviceTypePage(@PathVariable Long id, ModelMap modelMap) {
+        DeviceType deviceType = deviceTypeService.findById(id);
+
+        if (deviceType != null) {
+            modelMap.put("device_type", deviceType);
+            modelMap.addAttribute("device_type_form", new AddDeviceTypeForm());
+        } else {
+            modelMap.put("not_found", true);
+        }
+
+        return "edit_device_type";
+    }
+
+
+    @RequestMapping(value = "/operator/edit/device_types/{id:\\d+}", method = RequestMethod.POST)
+    public String editDeviceType(@PathVariable Long id, ModelMap modelMap, @ModelAttribute("device_type_form") @Valid AddDeviceTypeForm form, BindingResult result) {
+        DeviceType deviceType = deviceTypeService.findById(id);
+
+        if (result.hasErrors()) {
+            modelMap.put("device_type", deviceType);
+
+            return "edit_device_type";
+        }
+
+        String name = form.getName();
+
+        deviceType.setName(name);
+
+        deviceTypeService.update(deviceType);
+
+        return "redirect:/operator/device_types/";
+    }
 }

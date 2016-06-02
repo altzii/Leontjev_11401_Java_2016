@@ -41,7 +41,7 @@ public class StatusServiceImpl implements StatusService {
     @Override
     @Transactional
     public Status update(Status status) {
-        return null;
+        return statusRepository.saveAndFlush(status);
     }
 
     @Override

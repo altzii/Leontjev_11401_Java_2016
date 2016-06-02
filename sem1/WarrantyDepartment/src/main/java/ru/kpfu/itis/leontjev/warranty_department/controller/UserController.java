@@ -108,4 +108,16 @@ public class UserController {
         return "redirect:/admin/users/";
     }
 
+    @RequestMapping(value = "operator/users/{id:\\d+}", method = RequestMethod.GET)
+    public String userPage(@PathVariable Long id, ModelMap modelMap) {
+        User user = userService.findById(id);
+
+        if (user != null) {
+            modelMap.put("user", user);
+        } else {
+            modelMap.put("not_found", true);
+        }
+        return "user";
+    }
+
 }

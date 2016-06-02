@@ -1,5 +1,6 @@
 package ru.kpfu.itis.leontjev.warranty_department.controller;
 
+
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -22,14 +23,13 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.List;
 
 /**
  * Created by Alexander on 08/05/2016.
  */
 @Controller
 public class OrderController {
-
-
     @Autowired
     DeviceTypeService deviceTypeService;
 
@@ -164,14 +164,22 @@ public class OrderController {
 
     @RequestMapping(value = "/admin/delete/orders/{id:\\d+}", method = RequestMethod.POST)
     public String deleteOrder(@PathVariable String id) {
+
+        System.out.println(id);
+        System.out.println("HUI");
         orderService.delete(Integer.parseInt(id));
-        return "redirect:/operator/orders";
+        return "redirect:/operator/orders/dsadsasddsadas";
     }
 
     @RequestMapping(value = "/operator/orders/{id:\\d+}", method = RequestMethod.GET)
-    public String orderFromOperatorPage(@PathVariable String id, ModelMap modelMap) {
-        modelMap.put("order", orderService.findById(Long.parseLong(id)));
+    public String orderFromOperatorPage(@PathVariable Long id, ModelMap modelMap) {
+        Order order = orderService.findById(id);
 
+        if (order != null) {
+            modelMap.put("order", order);
+        } else {
+            modelMap.put("not_found", true);
+        }
         return "order_from_operator";
     }
 
@@ -218,8 +226,18 @@ public class OrderController {
         order.setDeviceType(deviceType);
         order.setBrand(brand);
         order.setModel(model);
-        order.setPurchaseDate(purchaseDate);
-        order.setSentDate(sentDate);
+        if (!purchaseDate.equals("")) {
+            order.setPurchaseDate(purchaseDate);
+        } else {
+            order.setPurchaseDate(null);
+        }
+        if (!sentDate.equals("")) {
+            order.setSentDate(sentDate);
+        } else {
+            order.setSentDate(null);
+
+        }
+
         order.setDefect(defect);
         order.setServiceCenter(serviceCenter);
         order.setStatus(status);
@@ -305,4 +323,41 @@ public class OrderController {
         return new FileSystemResource(filename);
     }
 
+    @RequestMapping(value = "/operator/orders_sort", method = RequestMethod.GET)
+    @ResponseBody
+    List<Order> getOrders(@RequestParam("sort") String sort, @RequestParam("search") String search) {
+        List<Order> orders = orderService.findAll();
+
+        if (search.length() == 0) {
+            switch (sort) {
+                case "id_asc": {
+                    orders = orderService.findAllByOrderByIdAsc();
+                    break;
+                }
+                case "id_desc": {
+                    orders = orderService.findAllByOrderByIdDesc();
+                    break;
+                }
+                case "client_asc": {
+                    orders = orderService.findAllByOrderByClientNameAsc();
+                    break;
+                }
+                case "client_desc": {
+                    orders = orderService.findAllByOrderByClientNameDesc();
+                    break;
+                }
+                case "status_asc": {
+                    orders = orderService.findAllByOrderByStatusNameAsc();
+                    break;
+                }
+                case "status_desc": {
+                    orders = orderService.findAllByOrderByStatusNameDesc();
+                    break;
+                }
+            }
+        } else {
+            orders = orderService.findAllByClientStatusContaing(search, search);
+        }
+        return orders;
+    }
 }

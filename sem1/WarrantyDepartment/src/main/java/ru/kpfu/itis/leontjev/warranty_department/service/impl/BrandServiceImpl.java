@@ -40,7 +40,7 @@ public class BrandServiceImpl implements BrandService {
     @Override
     @Transactional
     public Brand update(Brand brand) {
-        return null;
+        return brandRepository.saveAndFlush(brand);
     }
 
     @Override

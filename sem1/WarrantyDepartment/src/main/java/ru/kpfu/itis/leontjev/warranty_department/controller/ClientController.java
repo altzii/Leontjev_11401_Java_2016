@@ -41,8 +41,8 @@ public class ClientController {
         return "/add_client";
     }
 
-    @RequestMapping(value = "operator/clients/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("client_form") @Valid AddClientForm form, BindingResult result) {
+    @RequestMapping(value = "/operator/clients/add", method = RequestMethod.POST)
+    public String addClient(@ModelAttribute("client_form") @Valid AddClientForm form, BindingResult result) {
         if (result.hasErrors()) {
             return "/add_client";
         }
@@ -60,6 +60,58 @@ public class ClientController {
         clientService.create(client);
 
         return "redirect:/operator/clients";
-
     }
+
+    @RequestMapping(value = "/operator/clients/{id:\\d+}", method = RequestMethod.GET)
+    public String clientPage(@PathVariable Long id, ModelMap modelMap) {
+        Client client = clientService.findById(id);
+
+        if (client != null) {
+            modelMap.put("client", client);
+        } else {
+            modelMap.put("not_found", true);
+        }
+        return "client_from_operator";
+    }
+
+    @RequestMapping(value = "/operator/edit/clients/{id:\\d+}", method = RequestMethod.GET)
+    public String editClientPage(@PathVariable Long id, ModelMap modelMap) {
+        Client client = clientService.findById(id);
+
+        if (client != null) {
+            modelMap.put("client", client);
+            modelMap.addAttribute("client_form", new AddClientForm());
+        } else {
+            modelMap.put("not_found", true);
+        }
+
+        return "edit_client";
+    }
+
+    @RequestMapping(value = "/operator/edit/clients/{id:\\d+}", method = RequestMethod.POST)
+    public String editClient(@PathVariable Long id, ModelMap modelMap, @ModelAttribute("client_form") @Valid AddClientForm form, BindingResult result) {
+        Client client = clientService.findById(id);
+
+        if (result.hasErrors()) {
+            modelMap.put("client", client);
+
+            return "edit_client";
+        }
+
+        String name = form.getName();
+        String address = form.getAddress();
+        String phone = form.getPhone();
+
+        client.setName(name);
+        client.setAddress(address);
+        client.setPhone(phone);
+
+        clientService.update(client);
+
+        return "redirect:/operator/clients/" + id;
+    }
+
+
 }
+
+

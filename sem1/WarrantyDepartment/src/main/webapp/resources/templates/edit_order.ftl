@@ -7,7 +7,7 @@
 <div class="box-body" xmlns="http://www.w3.org/1999/html">
     <div class="col-md-3" style="width: 100%; padding-left: 25%; padding-right: 25%; padding-top: 15px">
         <!-- Profile Image -->
-        <h1 align="center">Заявка №${order.id}</h1>
+        <h2 align="center">Заявка №${order.id}</h2>
 
         <div class="box box-primary">
             <div class="box-body box-profile" style="box-shadow: 0 1px 1px rgba(0, 0, 0, 0.34); ">
@@ -99,7 +99,7 @@
                             <p align="center"><@form.errors path="statusId" cssStyle="color: #ab2020;" /></p>
                         </li>
                     </ul>
-                    <button type="submit" class="btn btn-primary btn-block">Обновить данные</button>
+                    <button type="submit" class="btn btn-primary btn-block">Обновить данные заказа</button>
                 </@form.form>
             </div><!-- /.box-body -->
         </div><!-- /.box -->
